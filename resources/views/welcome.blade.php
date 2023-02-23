@@ -12,7 +12,7 @@
         
     </head>
     <body class="">
-       <h1>welcome this is a test to check whether it is working or not</h1>
+       <h1>welcome This is my personal Todo project</h1>
        <a href="">Login</a>
        <a href="{{route('register.index')}}">signup</a>
     </body>
