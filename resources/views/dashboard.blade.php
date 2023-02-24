@@ -3,23 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <title>Laravel</title>
         <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 
-       
 
         
     </head>
-    <body class="bg-black">
-    
-        <div class="container p-5 ">
+    <body class="bg-white">
+        <nav class="nav">
+            <h1 class="text-black mb-3">{{$user->fname, " "}} {{$user->lname}} </h1>
+           </nav>
+
+           <a href="{{route('logout')}}" class="nav-link">Logout</a>
+        <div class="container ">
             
            <div class="container  ">
             @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
            @endif
-           <h1 class="text-white">{{$user->FirstName, " "}} {{$user->Lastname}} </h1>
+           
+          
                 <div class="container bg-info m-auto text-center p-3" style="width: 70%; border-radius: 20px">
 
 
@@ -34,23 +38,21 @@
                        <button type="submit" class="btn btn-outline-light mt-3">SUBMIT</button>
                    </form>
 
-
-                   <!-- You have to add @csrf to every form to make it work -->
-                   @foreach ($user as $data)
-                   <div class="container-fluid justify-content-center p-3" style="">
-                       <p>Item: {{$data->content}} </p>
-
-                       <form action="{{ route('delete', $data->list_id) }}" method="post">
-                        @csrf
+                   @foreach ($fetch as $data)
+                    <div class="container " style="">
+                            <div class="row">
+                                <span class="alert alert-success text-start">{{$data->content}} </span>
+                                
+                            </div>
+                            <div class="row">
+                                <a href="{{route('delete', $data->list_id)}}"><i class="bi bi-trash3"></i></a>
+                            </div>
+                            
+                    </div>
                     
-                        <button type="submit" class="btn btn-success " style="margin-left: 10px">Done</button>
-                        
-                        </form>
-
-                   </div>
-                    @endforeach
-                </div>
-
+                   @endforeach
+                
+                
            </div>
         </div>
 

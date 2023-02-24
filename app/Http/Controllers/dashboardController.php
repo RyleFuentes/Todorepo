@@ -15,12 +15,12 @@ class dashboardController extends Controller
     {
         $userID = session('loggedUser');
         //use first instead of get if you want to find a specific name
-        $fetch = User::where('user_id', $userID)->first();
+        $user = User::where('user_id', $userID)->first();
 
 
-        $user = todoModel::where('userID', $userID)->first();
+        $fetch = todoModel::where('userID', $userID)->get();
         
-          
+          return view('dashboard', compact('fetch', 'user'));
         //$data = ['user'=>User::where('userID', session('loggedUser'))->first()];
     }
 
@@ -94,6 +94,15 @@ class dashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = todoModel::where('list_id', $id)->first();
+        $item->delete();
+
+        return redirect('dashboard');
+    }
+
+
+    public function logout(){
+        auth()->logout();
+        return redirect('login');
     }
 }

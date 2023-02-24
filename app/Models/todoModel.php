@@ -10,4 +10,5 @@ class todoModel extends Model
     use HasFactory;
     protected $table = 'list_item';
     protected $fillable = ['content', 'userID'];
+    protected $primaryKey = 'list_id';
 }

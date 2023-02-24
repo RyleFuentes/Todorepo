@@ -22,8 +22,10 @@ Route::get('/', function(){
 });
 
 Route::post('todo', [dashboardController::class, 'store'])->name('todo_insert');
-Route::post('/delete/{id}', [TodolistController::class, 'delete'])->name('delete');
 Route::resource('register', registerController::class);
 Route::resource('login', loginController::class);
 Route::post('login', [loginController::class, 'Auth'])->name('auth');
 Route::resource('dashboard', dashboardController::class);
+//Route::delete('done/{list_id}', [dashboardController::class, 'destroy'])->name('done');
+Route::get('destroy/{id}', [dashboardController::class, 'destroy'])->name('delete');    
+Route::get('logout', [dashboardController::class, 'logout'])->name('logout');    
